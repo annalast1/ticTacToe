@@ -1,0 +1,180 @@
+@font-face {
+    font-family: 'Action Man';
+    src: url('./font/ActionMan.woff2') format('woff2'),
+        url('./font/ActionMan.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --square-size : 150px;
+    --mark-size : calc(var(--square-size) * .9);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Action Man';
+    font-size: 1rem;
+    background-color: black;
+    overflow: hidden;
+}
+
+
+h1 {
+    font-size: 5rem;
+    color: red;  
+    display: flex;
+    justify-content: center;
+}
+
+#box {
+    height: 90vh;
+    width: 90vw;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    display: grid;
+    margin-top: -60px;
+    grid-template-columns: repeat(3, auto);
+}
+
+.square {
+    height: var(--square-size);
+    width: var(--square-size);
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.square:first-child,
+.square:nth-child(2),
+.square:nth-child(3) {
+    border-top: none;
+}
+
+.square:first-child,
+.square:nth-child(4),
+.square:nth-child(7) {
+    border-left: none;
+}
+
+.square:nth-child(7),
+.square:nth-child(8),
+.square:nth-child(9) {
+    border-bottom: none;
+}
+
+.square:nth-child(3),
+.square:nth-child(6),
+.square:nth-child(9) {
+    border-right: none;
+} 
+
+.win-msg {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255,255,255, 0.95);
+    color: red;
+    font-size: 6rem;
+    gap: 15px;
+}
+
+#reset {
+    font-size: 3rem;
+    color: white;
+    background-color: black;
+    border:  1px solid white;
+    border-radius: 10px;
+    padding: .25em .5em;
+    cursor: pointer;
+}
+
+#reset:hover {
+    background-color: black;
+    color: red;
+}
+
+.win-msg.show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.square.circle::before,
+.square.circle::after
+.square.x::before,
+.square.x::after {
+    cursor: not-allowed;
+}
+
+.square.circle::before,
+.square.x::before,
+.square.x::after {
+    background-color: white;
+}
+
+.box.x .square:not(.x):not(.circle):hover::before,
+.box.x .square:not(.x):not(.circle):hover::after,
+.square.x::before,
+.square.x::after {
+    content: '';
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+    position: absolute;
+}
+
+.box.x .square:hover::before,
+.square.x::before {
+    transform: rotate(45deg);
+}
+
+.box.x .square:hover::after,
+.square.x::after {
+    transform: rotate(-45deg);
+}
+
+.box.circle .square:not(.x):not(.circle):hover::before,
+.box.circle .square:not(.x):not(.circle):hover::after,
+.square.circle::before,
+.square.circle::after {
+    content: '';
+    background-color: white;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.box.x .square:not(.x):not(.circle):hover::before,
+.box.x .square:not(.x):not(.circle):hover::after,
+.box.circle .square:not(.x):not(.circle):hover::before {
+    background-color: rgba(128, 128, 128, 0.7)
+}
+
+.box.circle .square:not(.x):not(.circle):hover::before,
+.square.circle::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+
+.box.circle .square:not(.x):not(.circle):hover::after,
+.square.circle::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: black;
+}
+

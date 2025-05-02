@@ -8,6 +8,9 @@ const Setup = {
     addToken(board, cell, symbol)  {
         if (board[cell] == 0 ) {
             board[cell] = symbol;
+            return true;
+        } else {
+            return false;
         }
     }
 };
@@ -17,7 +20,6 @@ const playerController = (function () {
         {
             name: 'Player One',
             token: 1,
-            image: './icons/x.png'
         }, 
         {
             name: 'Player Two',
@@ -119,7 +121,9 @@ const display = (function () {
 
     function addMark(cell, activePlayer) {
         
-        Setup.addToken(board, cell.dataset.index, symbol);
+        if (!Setup.addToken(board, cell.dataset.index, symbol)) {
+            activePlayer = playerController.takeTurns(activePlayer);
+        }
         results.checkWin(board);
         if (!results.checkSpace(board)) {
             results.drawText();
@@ -131,7 +135,8 @@ const display = (function () {
     } 
 })();
 
+// 
 
 // not allowed pointer not showing
-// add x or circle classlist
+// render board ()
 // form for players to enter name

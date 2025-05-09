@@ -81,6 +81,11 @@ h1 {
     border-right: none;
 } 
 
+.square.x,
+.square.circle {
+    cursor: not-allowed;
+}
+
 .win-msg {
     display: none;
     position: fixed;
@@ -114,13 +119,6 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.square.circle::before,
-.square.circle::after
-.square.x::before,
-.square.x::after {
-    cursor: not-allowed;
 }
 
 .square.circle::before,
